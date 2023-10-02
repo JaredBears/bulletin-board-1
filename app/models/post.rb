@@ -14,5 +14,5 @@ class Post < ApplicationRecord
   belongs_to(:board)
   scope(:active, -> { where("expires_on >= ?", Date.today) })
   scope(:expired, -> { where("expires_on < ?", Date.today) })
-
+  validates(:body, { :presence => true })
 end
