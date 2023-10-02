@@ -14,6 +14,9 @@ class BoardsController < ApplicationController
 
     @the_board = matching_boards.at(0)
 
+    @active_posts = @the_board.posts.active.order({ :expires_on => :asc })
+    @expired_posts = @the_board.posts.expired.order({ :expires_on => :desc })
+
     render({ :template => "boards/show" })
   end
 
